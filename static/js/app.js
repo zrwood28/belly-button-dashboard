@@ -15,6 +15,14 @@ function drawGauge(sampleId) {
     console.log(`drawGauge(${sampleId})`);
 }
 
+function optionChanged(sampleId) {
+    console.log(`optionChanged: ${sampleId}`);
+
+    drawBargraph(sampleId);
+    demoData(sampleId);
+    drawBubbleGraph(sampleId);
+    drawGauge(sampleId);
+}
 
 function InitDashboard() {
 
@@ -45,6 +53,10 @@ function InitDashboard() {
         demoData(initialId);
 
         drawGauge(initialId);
+
+        optionChanged
+
+
 
     });
 }
