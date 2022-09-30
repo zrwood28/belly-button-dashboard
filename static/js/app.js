@@ -1,4 +1,4 @@
-// Thanks to Dom for much of this code; I attended his tutorial session.
+// Thank you to Dom for much of this code; I attended his tutorial session.
 
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
@@ -39,6 +39,41 @@ function drawBargraph(sampleId) {
 
 function demoData(sampleId) {
     console.log(`demoData(${sampleId})`);
+
+    d3.json(url).then(data => {
+
+        let metaData = data.metadata;
+        let resultArray = metaData.filter(s => s.id == sampleId);
+        let result = resultArray[0];
+
+        keyArray = []
+        let keys = Object.keys(result);
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
+            keyArray.push(key);
+        }
+
+        valueArray = []
+        let metaValues = Object.values(result);
+        for (let i = 0; i < metaValues.length; i++) {
+            let value = metaValues[i];
+            valueArray.push(value);
+        }
+
+        keyValuePairs = [[keyArray], [valueArray]];
+
+        document.getElementById("sample-metadata").innerHTML = 
+
+            [(`${[keyArray[0]]}: ${[valueArray[0]]}`) + "<br />"
+            + (`${[keyArray[1]]}: ${[valueArray[1]]}`) + "<br />"
+            + (`${[keyArray[2]]}: ${[valueArray[2]]}`) + "<br />"
+            + (`${[keyArray[3]]}: ${[valueArray[3]]}`) + "<br />"
+            + (`${[keyArray[4]]}: ${[valueArray[4]]}`) + "<br />"
+            + (`${[keyArray[5]]}: ${[valueArray[5]]}`) + "<br />"
+            + (`${[keyArray[6]]}: ${[valueArray[6]]}`) + "<br />"
+            ];
+
+    });
 }
 
 function drawBubbleGraph(sampleId) {
